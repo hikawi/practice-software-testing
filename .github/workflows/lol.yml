@@ -1,0 +1,24 @@
+name: Laugh out loud
+
+on: ["push"]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup project
+        run: |
+          docker compose -f docker-compose.yml up -d
+          docker compose exec laravel-api php artisan migrate:fresh --seed
+      - name: Install Postman
+        run: |
+          curl -o- "https://dl-cli.pstmn.io/install/linux64.sh" | sh
+      - name: Test with Postman
+        run: |
+          postman collection run tests/payments.postman_collection.json -r cli,html
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        with:
+          path: ./postman-cli-reports/*
