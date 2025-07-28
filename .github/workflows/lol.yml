@@ -13,7 +13,10 @@ jobs:
         uses: actions/checkout@v4
       - name: Setup project
         run: |
-          docker compose -f docker-compose.yml up -d
+          docker compose up -d
+          until [ "`docker inspect -f {{.State.Health.Status}} practice-software-testing-web-1`"=="healthy" ]; do
+              sleep 0.1;
+          done;
           docker compose exec laravel-api php artisan migrate:fresh --seed
       - name: Install Postman
         run: |
