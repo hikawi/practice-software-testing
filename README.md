@@ -1,18 +1,19 @@
 [![Run Playwright Tests 🎭](https://github.com/testsmith-io/practice-software-testing/actions/workflows/run-tests.yml/badge.svg)](https://github.com/testsmith-io/practice-software-testing/actions/workflows/run-tests.yml) [![StackShare](http://img.shields.io/badge/tech-stack-0690fa.svg?style=flat)](https://stackshare.io/testsmith-io/practice-software-testing)
 
+a
 
 # Default accounts
 
-| First name | Last name | Role   | E-mail                                | Password   |
-|------------|-----------|--------|---------------------------------------|------------|
-| John       | Doe       | admin  | admin@practicesoftwaretesting.com     | welcome01  |
-| Jane       | Doe       | user   | customer@practicesoftwaretesting.com  | welcome01  |
-| Jack       | Howe      | user   | customer2@practicesoftwaretesting.com | welcome01  |
+| First name | Last name | Role  | E-mail                                | Password  |
+| ---------- | --------- | ----- | ------------------------------------- | --------- |
+| John       | Doe       | admin | admin@practicesoftwaretesting.com     | welcome01 |
+| Jane       | Doe       | user  | customer@practicesoftwaretesting.com  | welcome01 |
+| Jack       | Howe      | user  | customer2@practicesoftwaretesting.com | welcome01 |
 
 # URLs (hosted versions)
 
 | Description          | Application                                                                                    | API                                                                                                           | Swagger                                                                                                                  |
-|----------------------|------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
+| -------------------- | ---------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
 | Sprint 1             | [https://v1.practicesoftwaretesting.com](https://v1.practicesoftwaretesting.com)               | [https://api-v1.practicesoftwaretesting.com](https://api-v1.practicesoftwaretesting.com/status)               | [https://api-v1.practicesoftwaretesting.com](https://api-v1.practicesoftwaretesting.com/api/documentation)               |
 | Sprint 2             | [https://v2.practicesoftwaretesting.com](https://v2.practicesoftwaretesting.com)               | [https://api-v2.practicesoftwaretesting.com](https://api-v2.practicesoftwaretesting.com/status)               | [https://api-v2.practicesoftwaretesting.com](https://api-v2.practicesoftwaretesting.com/api/documentation)               |
 | Sprint 3             | [https://v3.practicesoftwaretesting.com](https://v3.practicesoftwaretesting.com)               | [https://api-v3.practicesoftwaretesting.com](https://api-v3.practicesoftwaretesting.com/status)               | [https://api-v3.practicesoftwaretesting.com](https://api-v3.practicesoftwaretesting.com/api/documentation)               |
@@ -38,7 +39,7 @@ All images together are less than 1,5 GB.
 ## URL's (local version)
 
 | URL                                                                                | Description           |
-|------------------------------------------------------------------------------------|-----------------------|
+| ---------------------------------------------------------------------------------- | --------------------- |
 | [http://localhost:8091](http://localhost:8091)                                     | (REST) API            |
 | [http://localhost:8091/api/documentation](http://localhost:8091/api/documentation) | Swagger               |
 | [http://localhost:1080](http://localhost:1080)                                     | MailCatcher           |
