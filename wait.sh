@@ -22,7 +22,7 @@ while [ $ATTEMPT_COUNT -lt $MAX_ATTEMPTS ]; do
     HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" --connect-timeout 5 "${TARGET_URL}")
 
     # Check if curl command itself succeeded and if the HTTP status code is a success (2xx or 3xx)
-    if [ $? -eq 0 ] && [[ "$HTTP_CODE" =~ ^[23] ]]; then
+    if [ $? -eq 0 ] && [[ "$HTTP_CODE" =~ ^[234] ]]; then
         echo "SUCCESS: ${TARGET_URL} is AVAILABLE! HTTP Status: ${HTTP_CODE}"
         exit 0 # Exit with success
     elif [ $? -ne 0 ]; then
