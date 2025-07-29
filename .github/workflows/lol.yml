@@ -14,9 +14,7 @@ jobs:
       - name: Setup project
         run: |
           docker compose up -d
-          until [ "`docker inspect -f {{.State.Health.Status}} practice-software-testing-web-1`"=="healthy" ]; do
-              sleep 0.1;
-          done;
+          sleep 1m
           docker compose exec laravel-api php artisan migrate:fresh --seed
       - name: Install Postman
         run: |
