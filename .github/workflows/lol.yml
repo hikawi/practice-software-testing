@@ -14,8 +14,10 @@ jobs:
       - name: Setup project
         run: |
           docker compose up -d
-          sleep 2m
-          docker compose exec laravel-api php artisan migrate:fresh --seed
+          sleep 60
+          docker compose run --rm composer
+          docker compose exec -T -u root laravel-api chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
+          docker compose exec -T laravel-api php artisan migrate:fresh --seed --force
       - name: Install Postman
         run: |
           curl -o- "https://dl-cli.pstmn.io/install/linux64.sh" | sh
@@ -28,6 +30,9 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./postman-cli-reports/*
+      - name: Cleanup 🧹
+        if: always()
+        run: docker compose down -v
 
   deploy:
     environment:
