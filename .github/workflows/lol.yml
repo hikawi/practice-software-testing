@@ -13,9 +13,8 @@ jobs:
         uses: actions/checkout@v4
       - name: Setup project
         run: |
-          ./start-app.sh
-          ./init-data.sh
-          ./process_queue.sh
+          docker compose -f docker-compose.prod.yml up --pull missing -d
+          docker compose exec laravel-api php artisan migrate:fresh --seed
       - name: Install Postman
         run: |
           curl -o- "https://dl-cli.pstmn.io/install/linux64.sh" | sh

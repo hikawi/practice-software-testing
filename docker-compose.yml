@@ -39,8 +39,16 @@ services:
       - 8091:80
       - 8000:81
     depends_on:
-      - phpmyadmin
-      - laravel-api
+      phpmyadmin:
+        condition: service_healthy # Wait for phpmyadmin to be healthy
+      laravel-api:
+        condition: service_healthy # Crucial: Wait for Laravel API to be healthy
+    healthcheck: # Add healthcheck for the web server (Nginx/Apache)
+      test: ["CMD", "curl", "-f", "http://localhost:8091/"] # Check if Nginx/Apache is serving
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
 
   cron:
     build:
