@@ -29,8 +29,8 @@ jobs:
         id: deployment
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./postman-cli-reports/*
-      - name: Cleanup 🧹
+          path: ./postman-cli-reports/
+      - name: Cleanup
         if: always()
         run: docker compose down -v
 
