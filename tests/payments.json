@@ -1,0 +1,146 @@
+{
+	"info": {
+		"_postman_id": "f7929f78-8e39-4e5b-8c29-e754dee0b192",
+		"name": "Payment collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "47119572",
+		"_collection_link": "https://hikawi-9387197.postman.co/workspace/Nguy%E1%BB%87t-%C3%81nh's-Workspace~fb299228-04fc-42c3-8126-b296756c6660/collection/47119572-f7929f78-8e39-4e5b-8c29-e754dee0b192?action=share&source=collection_link&creator=47119572"
+	},
+	"item": [
+		{
+			"name": "Payment is successful with ideal values",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Payment is successful\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.message).to.eql(\"Payment was successful\");",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "method",
+							"value": "\"Credit Card\"",
+							"type": "text"
+						},
+						{
+							"key": "account_name",
+							"value": "\"Tran Dan Huy\"",
+							"type": "text"
+						},
+						{
+							"key": "account_number",
+							"value": "16369377",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseURL}}/payment/check",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"payment",
+						"check"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Payment is unsuccessful with bad values",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "account_number",
+							"value": "1212312",
+							"type": "text"
+						},
+						{
+							"key": "account-name",
+							"value": "\"Tran Dan Huy\"",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseURL}}/payment/check",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"payment",
+						"check"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "http://localhost:8091",
+			"type": "default"
+		}
+	]
+}

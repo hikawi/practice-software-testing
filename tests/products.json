@@ -1,0 +1,950 @@
+{
+	"info": {
+		"_postman_id": "fa1998a8-95a4-41f0-824a-40c5d8743320",
+		"name": "Product Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "47119572",
+		"_collection_link": "https://hikawi-9387197.postman.co/workspace/Nguy%E1%BB%87t-%C3%81nh's-Workspace~fb299228-04fc-42c3-8126-b296756c6660/collection/47119572-fa1998a8-95a4-41f0-824a-40c5d8743320?action=share&source=collection_link&creator=47119572"
+	},
+	"item": [
+		{
+			"name": "Gets all products of brand 1 returns all brand-1 products",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"All products have brand 1\", () => {",
+							"    const json = pm.response.json()",
+							"    for (const data of json[\"data\"]) {",
+							"        pm.expect(data.brand.id).to.eql(1);   ",
+							"    }",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/products?by_brand=1",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"products"
+					],
+					"query": [
+						{
+							"key": "by_brand",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Gets all products of category 2 returns all cat-2 products",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"All products have category 2\", () => {",
+							"    const json = pm.response.json()",
+							"    for (const data of json[\"data\"]) {",
+							"        pm.expect(data.category.id).to.eql(2);   ",
+							"    }",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/products?by_category=2",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"products"
+					],
+					"query": [
+						{
+							"key": "by_category",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Getting all rentals is successful",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"All products are rentals\", () => {",
+							"    const json = pm.response.json()",
+							"    for (const data of json[\"data\"]) {",
+							"        pm.expect(data.is_rental).to.eql(1);   ",
+							"    }",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/products?is_rental=true",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"products"
+					],
+					"query": [
+						{
+							"key": "is_rental",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Getting non-rentals is successful",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"All products are not rentals\", () => {",
+							"    const json = pm.response.json()",
+							"    for (const data of json[\"data\"]) {",
+							"        pm.expect(data.is_rental).to.eql(0);   ",
+							"    }",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/products?is_rental=false",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"products"
+					],
+					"query": [
+						{
+							"key": "is_rental",
+							"value": "false"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Getting products between two prices returns correctly",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"All products have between prices\", () => {",
+							"    const json = pm.response.json()",
+							"    for (const data of json[\"data\"]) {",
+							"        pm.expect(data.price).to.lessThanOrEqual(25);",
+							"        pm.expect(data.price).to.greaterThanOrEqual(20);   ",
+							"    }",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/products?between=price,20,25",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"products"
+					],
+					"query": [
+						{
+							"key": "between",
+							"value": "price,20,25"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Getting products sorted returns all sorted",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"All products are sorted\", () => {",
+							"    const names = pm.response.json().data.map(node => node.name);",
+							"    const sorted = names.toSorted();",
+							"    pm.expect(names).to.deep.eq(sorted);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/products?sort=name,asc",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"products"
+					],
+					"query": [
+						{
+							"key": "sort",
+							"value": "name,asc"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Getting products sorted by name is sorted",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"All products are sorted\", () => {",
+							"    const names = pm.response.json().data.map(node => node.name);",
+							"    const sorted = names.toSorted().toReversed();",
+							"    pm.expect(names).to.deep.eq(sorted);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/products?sort=name,desc",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"products"
+					],
+					"query": [
+						{
+							"key": "sort",
+							"value": "name,desc"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Storing a new product works with valid data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"The product is created\", () => {",
+							"    const data = pm.response.json();",
+							"    pm.globals.set(\"created_id\", data.id);",
+							"",
+							"    pm.expect(data.id).to.greaterThanOrEqual(1);",
+							"    pm.expect(data.name).to.eq(\"Postman\");",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Postman",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Postman Description",
+							"type": "text"
+						},
+						{
+							"key": "price",
+							"value": "50.23",
+							"type": "text"
+						},
+						{
+							"key": "category_id",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "brand_id",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "product_image_id",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "is_location_offer",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "is_rental",
+							"value": "0",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/products",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Storing a new product errors when not enough data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 422\", function () {",
+							"    pm.response.to.have.status(422);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "is_location_offer",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "is_rental",
+							"value": "0",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/products",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieving the newly stored product",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Data is correct for what we created\", () => {",
+							"    const data = pm.response.json();",
+							"    pm.expect(data.id).to.eq(pm.globals.get(\"created_id\"));",
+							"    pm.expect(data.name).to.eq(\"Postman\");",
+							"    pm.expect(data.description).to.eq(\"Postman Description\");",
+							"    pm.expect(data.price).to.eq(50.23);",
+							"})",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "is_location_offer",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "is_rental",
+							"value": "0",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/products/{{created_id}}",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"products",
+						"{{created_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieving unknown item gets 404",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "is_location_offer",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "is_rental",
+							"value": "0",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/products/9999",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"products",
+						"9999"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieving item when posted to returns 405",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 405\", function () {",
+							"    pm.response.to.have.status(405);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "is_location_offer",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "is_rental",
+							"value": "0",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/products/{{created_id}}",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"products",
+						"{{created_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editing item retrieves 405 when not specified ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 405\", function () {",
+							"    pm.response.to.have.status(405);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "is_location_offer",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "is_rental",
+							"value": "0",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/products/",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"products",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editing non existent item returns 404",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "is_location_offer",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "is_rental",
+							"value": "0",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/products/9999",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"products",
+						"9999"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editing valid item is successful",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"The data is changed and it was successful\", () => {",
+							"    const data = pm.response.json();",
+							"    pm.expect(data).to.ownProperty(\"success\");",
+							"    pm.expect(data.success).to.eq(true);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Postman Changed",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/products/{{created_id}}",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"products",
+						"{{created_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deleting item rejects when unauthorized",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 401\", function () {",
+							"    pm.response.to.have.status(401);",
+							"});",
+							"",
+							"pm.test(\"Response has a message field\", () => {",
+							"    const data = pm.response.json();",
+							"    pm.expect(data).to.ownProperty(\"message\");",
+							"    pm.expect(data.message).to.eq(\"Unauthorized\");",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/products/{{created_id}}",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"products",
+						"{{created_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deleting item returns 404 or 422 for non existent item",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404 or 422\", function () {",
+							"    const status = pm.response.code;",
+							"    pm.expect([404, 422]).to.contain(status);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/products/{{created_id}}",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"products",
+						"{{created_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Searching item yields correct results",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"All items contain 'drill'\", () => {",
+							"    const data = pm.response.json().data.map(n => n.name);",
+							"    for(const node of data) {",
+							"        pm.expect(node.toLowerCase()).to.contain(\"drill\");",
+							"    }",
+							"})",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/products?q=drill",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"products"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "drill"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Searching item yields correct results Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"No items are returned\", () => {",
+							"    const data = pm.response.json().data.map(n => n.name);",
+							"    pm.expect(data.length).to.equal(0);",
+							"})",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/products?q=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"products"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "BASE_URL",
+			"value": "http://localhost:8091",
+			"type": "string"
+		}
+	]
+}
