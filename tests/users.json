@@ -4,7 +4,7 @@
 		"name": "User Collection",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "47119572",
-		"_collection_link": "https://hikawi-9387197.postman.co/workspace/Nguy%25E1%25BB%2587t-%25C3%2581nh's-Workspace~fb299228-04fc-42c3-8126-b296756c6660/collection/47119572-0965e2fd-e639-4867-802c-f7241edd0724?action=share&source=collection_link&creator=47119572"
+		"_collection_link": "https://hikawi-9387197.postman.co/workspace/Nguy%E1%BB%87t-%C3%81nh's-Workspace~fb299228-04fc-42c3-8126-b296756c6660/collection/47119572-0965e2fd-e639-4867-802c-f7241edd0724?action=share&source=collection_link&creator=47119572"
 	},
 	"item": [
 		{
@@ -387,7 +387,7 @@
 							"",
 							"pm.test(\"Response contains access token\", function () {",
 							"    var jsonData = pm.response.json();",
-							"    pm.expect(jsonData).to.have(\"access_token\");",
+							"    pm.expect(jsonData).to.ownProperty(\"access_token\");",
 							"    pm.globals.set(\"AUTH_TOKEN\", jsonData.access_token);",
 							"});",
 							""
