@@ -23,9 +23,9 @@ jobs:
           curl -o- "https://dl-cli.pstmn.io/install/linux64.sh" | sh
       - name: Test with Postman
         run: |
-          postman collection run tests/payments.json -r cli,html || true
-          postman collection run tests/products.json -r cli,html || true
-          postman collection run tests/users.json -r cli,html || true
+          postman collection run tests/payments.json -r cli,html --delay-request 50 || true
+          postman collection run tests/products.json -r cli,html --delay-request 50 || true
+          postman collection run tests/users.json -r cli,html --delay-request 50 || true
       - name: Cleanup
         if: always()
         run: docker compose down -v
