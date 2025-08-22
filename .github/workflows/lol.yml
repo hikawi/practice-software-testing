@@ -11,7 +11,7 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    name: Deploy Docker locally
+    name: Run Postman CLI tests
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -22,40 +22,14 @@ jobs:
           docker compose run --rm composer
           docker compose exec -T -u root laravel-api chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
           docker compose exec -T laravel-api php artisan migrate:fresh --seed --force
-
-  postman:
-    runs-on: ubuntu-latest
-    name: Test with Postman
-    needs: [deploy]
-    steps:
       - name: Install Postman
         run: |
           curl -o- "https://dl-cli.pstmn.io/install/linux64.sh" | sh
       - name: Test with Postman
         run: |
-          postman collection run tests/pm/payments.json -r cli,html --delay-request 50 || true
-          postman collection run tests/pm/products.json -r cli,html --delay-request 50 || true
-          postman collection run tests/pm/users.json -r cli,html --delay-request 50 || true
-
-  selenium:
-    runs-on: ubuntu-latest
-    name: Test with Python and Selenium
-    needs: [deploy]
-    steps:
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.13"
-          cache: "pip"
-      - name: Setup Python venv
-        run: |
-          python -m venv ./venv
-          ./venv/bin/pip install -r requirements.txt
-
-  cleanup:
-    runs-on: ubuntu-latest
-    name: Cleanup Docker
-    if: always()
-    steps:
-      - name: Cleanup
+          postman collection run -d tests/payments_data.csv tests/payments.json -r cli --delay-request 50 || true
+          postman collection run -d tests/products_data.csv tests/products.json -r cli --delay-request 50 || true
+          postman collection run -d tests/users_data.csv tests/users.json -r cli --delay-request 50 || true
+      - name: Cleanup Docker
+        if: always()
         run: docker compose down -v
