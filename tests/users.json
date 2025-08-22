@@ -1,1153 +1,1052 @@
 {
-	"info": {
-		"_postman_id": "0965e2fd-e639-4867-802c-f7241edd0724",
-		"name": "User Collection",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "47119572",
-		"_collection_link": "https://hikawi-9387197.postman.co/workspace/Nguy%E1%BB%87t-%C3%81nh's-Workspace~fb299228-04fc-42c3-8126-b296756c6660/collection/47119572-0965e2fd-e639-4867-802c-f7241edd0724?action=share&source=collection_link&creator=47119572"
-	},
-	"item": [
-		{
-			"name": "Register a new user fails with not enough fields",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 422\", function () {",
-							"    pm.response.to.have.status(422);",
-							"});",
-							""
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Bearer {{AUTH_TOKEN}}",
-						"type": "text",
-						"disabled": true
-					}
-				],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "email",
-							"value": "apitesting@example.com",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "{{BASE_URL}}/users/register",
-					"host": [
-						"{{BASE_URL}}"
-					],
-					"path": [
-						"users",
-						"register"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Register a new user fails with a bad format email",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 400\", function () {",
-							"    pm.response.to.have.status(400);",
-							"});",
-							""
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Bearer {{AUTH_TOKEN}}",
-						"type": "text",
-						"disabled": true
-					}
-				],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "email",
-							"value": "apitesting",
-							"type": "text"
-						},
-						{
-							"key": "first_name",
-							"value": "John",
-							"type": "text"
-						},
-						{
-							"key": "last_name",
-							"value": "Doe",
-							"type": "text"
-						},
-						{
-							"key": "address",
-							"value": "Street 1",
-							"type": "text"
-						},
-						{
-							"key": "city",
-							"value": "City",
-							"type": "text"
-						},
-						{
-							"key": "state",
-							"value": "State",
-							"type": "text"
-						},
-						{
-							"key": "country",
-							"value": "Country",
-							"type": "text"
-						},
-						{
-							"key": "postcode",
-							"value": "1234AA",
-							"type": "text"
-						},
-						{
-							"key": "phone",
-							"value": "0987654321",
-							"type": "text"
-						},
-						{
-							"key": "dob",
-							"value": "1970-01-01",
-							"type": "text"
-						},
-						{
-							"key": "password",
-							"value": "apitesting",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "{{BASE_URL}}/users/register",
-					"host": [
-						"{{BASE_URL}}"
-					],
-					"path": [
-						"users",
-						"register"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Register a new user succeeds with proper data",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 201\", function () {",
-							"    pm.response.to.have.status(201);",
-							"});",
-							"",
-							"pm.test(\"Response data contain correct data\", () => {",
-							"    const json = pm.response.json();",
-							"    pm.expect(json).to.have(\"id\");",
-							"    pm.expect(json.first_name).to.eql(\"John\");",
-							"    pm.expect(json.city).to.sql(\"City\");",
-							"})",
-							""
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Bearer {{AUTH_TOKEN}}",
-						"type": "text",
-						"disabled": true
-					}
-				],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "email",
-							"value": "apitesting@example.com",
-							"type": "text"
-						},
-						{
-							"key": "first_name",
-							"value": "John",
-							"type": "text"
-						},
-						{
-							"key": "last_name",
-							"value": "Doe",
-							"type": "text"
-						},
-						{
-							"key": "address",
-							"value": "Street 1",
-							"type": "text"
-						},
-						{
-							"key": "city",
-							"value": "City",
-							"type": "text"
-						},
-						{
-							"key": "state",
-							"value": "State",
-							"type": "text"
-						},
-						{
-							"key": "country",
-							"value": "Country",
-							"type": "text"
-						},
-						{
-							"key": "postcode",
-							"value": "1234AA",
-							"type": "text"
-						},
-						{
-							"key": "phone",
-							"value": "0987654321",
-							"type": "text"
-						},
-						{
-							"key": "dob",
-							"value": "1970-01-01",
-							"type": "text"
-						},
-						{
-							"key": "password",
-							"value": "apitesting",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "{{BASE_URL}}/users/register",
-					"host": [
-						"{{BASE_URL}}"
-					],
-					"path": [
-						"users",
-						"register"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Logging in fails with a non-existent account",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 400s\", function () {",
-							"    pm.expect([400, 401, 403]).to.contain(pm.response.code);",
-							"});",
-							""
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Bearer {{AUTH_TOKEN}}",
-						"type": "text",
-						"disabled": true
-					}
-				],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "email",
-							"value": "bad@practicesoftwaretesting.com",
-							"type": "text"
-						},
-						{
-							"key": "password",
-							"value": "1234",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "{{BASE_URL}}/users/login",
-					"host": [
-						"{{BASE_URL}}"
-					],
-					"path": [
-						"users",
-						"login"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Logging in fails with incorrect password",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 400s\", function () {",
-							"    pm.expect([400, 401, 403]).to.contain(pm.response.code);",
-							"});",
-							""
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Bearer {{AUTH_TOKEN}}",
-						"type": "text",
-						"disabled": true
-					}
-				],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "email",
-							"value": "admin@practicesoftwaretesting.com",
-							"type": "text"
-						},
-						{
-							"key": "password",
-							"value": "welcome02",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "{{BASE_URL}}/users/login",
-					"host": [
-						"{{BASE_URL}}"
-					],
-					"path": [
-						"users",
-						"login"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Logging in succeeds with correct credentials",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"pm.test(\"Response contains access token\", function () {",
-							"    var jsonData = pm.response.json();",
-							"    pm.expect(jsonData).to.ownProperty(\"access_token\");",
-							"    pm.globals.set(\"AUTH_TOKEN\", jsonData.access_token);",
-							"});",
-							""
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Bearer {{AUTH_TOKEN}}",
-						"type": "text",
-						"disabled": true
-					}
-				],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "email",
-							"value": "admin@practicesoftwaretesting.com",
-							"type": "text"
-						},
-						{
-							"key": "password",
-							"value": "welcome01",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "{{BASE_URL}}/users/login",
-					"host": [
-						"{{BASE_URL}}"
-					],
-					"path": [
-						"users",
-						"login"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Sending a forgot password succeeds",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							""
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Bearer {{AUTH_TOKEN}}",
-						"type": "text",
-						"disabled": true
-					}
-				],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "email",
-							"value": "admin@practicesoftwaretesting.com",
-							"type": "text"
-						},
-						{
-							"key": "password",
-							"value": "welcome01",
-							"type": "text",
-							"disabled": true
-						}
-					]
-				},
-				"url": {
-					"raw": "{{BASE_URL}}/users/forgot-password",
-					"host": [
-						"{{BASE_URL}}"
-					],
-					"path": [
-						"users",
-						"forgot-password"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Changing password fails without authentication",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 401\", function () {",
-							"    pm.response.to.have.status(401);",
-							"});",
-							""
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Bearer {{AUTH_TOKEN}}",
-						"type": "text",
-						"disabled": true
-					}
-				],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "password",
-							"value": "welcome01",
-							"type": "text"
-						},
-						{
-							"key": "new_password",
-							"value": "welcome02",
-							"type": "text"
-						},
-						{
-							"key": "new_password_confirmation",
-							"value": "welcome02",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "{{BASE_URL}}/users/change-password",
-					"host": [
-						"{{BASE_URL}}"
-					],
-					"path": [
-						"users",
-						"change-password"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Changing password succeeds with authentication",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							""
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Bearer {{AUTH_TOKEN}}",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "password",
-							"value": "welcome01",
-							"type": "text"
-						},
-						{
-							"key": "new_password",
-							"value": "welcome02",
-							"type": "text"
-						},
-						{
-							"key": "new_password_confirmation",
-							"value": "welcome02",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "{{BASE_URL}}/users/change-password",
-					"host": [
-						"{{BASE_URL}}"
-					],
-					"path": [
-						"users",
-						"change-password"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Getting my profile succeeds with authentication",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"pm.test(\"Response data contains correct info\", () => {",
-							"    const json = pm.response.json();",
-							"    pm.expect(json).to.ownProperty(\"first_name\");",
-							"    pm.expect(json.first_name).to.eql(\"John\");",
-							"});",
-							""
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Bearer {{AUTH_TOKEN}}",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": []
-				},
-				"url": {
-					"raw": "{{BASE_URL}}/users/me",
-					"host": [
-						"{{BASE_URL}}"
-					],
-					"path": [
-						"users",
-						"me"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Getting my profile fails with no authentication",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 401\", function () {",
-							"    pm.response.to.have.status(401);",
-							"});",
-							""
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Bearer {{AUTH_TOKEN}}",
-						"type": "text",
-						"disabled": true
-					}
-				],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": []
-				},
-				"url": {
-					"raw": "{{BASE_URL}}/users/me",
-					"host": [
-						"{{BASE_URL}}"
-					],
-					"path": [
-						"users",
-						"me"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Logging out fails with no authentication",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 401\", function () {",
-							"    pm.response.to.have.status(401);",
-							"});",
-							""
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Bearer {{AUTH_TOKEN}}",
-						"type": "text",
-						"disabled": true
-					}
-				],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": []
-				},
-				"url": {
-					"raw": "{{BASE_URL}}/users/logout",
-					"host": [
-						"{{BASE_URL}}"
-					],
-					"path": [
-						"users",
-						"logout"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Refreshing token fails without authentication",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 401\", function () {",
-							"    pm.response.to.have.status(401);",
-							"});",
-							""
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Bearer {{AUTH_TOKEN}}",
-						"type": "text",
-						"disabled": true
-					}
-				],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": []
-				},
-				"url": {
-					"raw": "{{BASE_URL}}/users/refresh",
-					"host": [
-						"{{BASE_URL}}"
-					],
-					"path": [
-						"users",
-						"refresh"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Refreshing a token succeeds with valid authentication",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"pm.test(\"Response data contains new token\", () => {",
-							"    const json = pm.response.json();",
-							"    pm.expect(json).to.ownProperty(\"access_token\");",
-							"    pm.globals.set(\"AUTH_TOKEN\", json.access_token);",
-							"})",
-							""
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Bearer {{AUTH_TOKEN}}",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": []
-				},
-				"url": {
-					"raw": "{{BASE_URL}}/users/refresh",
-					"host": [
-						"{{BASE_URL}}"
-					],
-					"path": [
-						"users",
-						"refresh"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Retrieving specific user fails without admin authentication",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 401\", function () {",
-							"    pm.response.to.have.status(401);",
-							"});",
-							""
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Bearer {{AUTH_TOKEN}}",
-						"type": "text",
-						"disabled": true
-					}
-				],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": []
-				},
-				"url": {
-					"raw": "{{BASE_URL}}/users/1",
-					"host": [
-						"{{BASE_URL}}"
-					],
-					"path": [
-						"users",
-						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Retrieving non existent user fails gracefully",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 404\", function () {",
-							"    pm.response.to.have.status(404);",
-							"});",
-							""
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Bearer {{AUTH_TOKEN}}",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": []
-				},
-				"url": {
-					"raw": "{{BASE_URL}}/users/999",
-					"host": [
-						"{{BASE_URL}}"
-					],
-					"path": [
-						"users",
-						"999"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Retrieving correct user succeeds with admin",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							""
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Bearer {{AUTH_TOKEN}}",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": []
-				},
-				"url": {
-					"raw": "{{BASE_URL}}/users/1",
-					"host": [
-						"{{BASE_URL}}"
-					],
-					"path": [
-						"users",
-						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Getting all users fails with no permission",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 401\", function () {",
-							"    pm.response.to.have.status(401);",
-							"});",
-							""
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{BASE_URL}}/users",
-					"host": [
-						"{{BASE_URL}}"
-					],
-					"path": [
-						"users"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Getting all users succeeded with admin account",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"pm.test(\"Result contains data field\", function () {",
-							"    var jsonData = pm.response.json();",
-							"    pm.expect(jsonData).to.ownProperty(\"data\");",
-							"});",
-							""
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Bearer {{AUTH_TOKEN}}",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "{{BASE_URL}}/users",
-					"host": [
-						"{{BASE_URL}}"
-					],
-					"path": [
-						"users"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Logging out succeeds with correct authentication",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							""
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Bearer {{AUTH_TOKEN}}",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": []
-				},
-				"url": {
-					"raw": "{{BASE_URL}}/users/logout",
-					"host": [
-						"{{BASE_URL}}"
-					],
-					"path": [
-						"users",
-						"logout"
-					]
-				}
-			},
-			"response": []
-		}
-	],
-	"event": [
-		{
-			"listen": "prerequest",
-			"script": {
-				"type": "text/javascript",
-				"packages": {},
-				"exec": [
-					""
-				]
-			}
-		},
-		{
-			"listen": "test",
-			"script": {
-				"type": "text/javascript",
-				"packages": {},
-				"exec": [
-					""
-				]
-			}
-		}
-	],
-	"variable": [
-		{
-			"key": "BASE_URL",
-			"value": "http://localhost:8091",
-			"type": "string"
-		},
-		{
-			"key": "AUTH_TOKEN",
-			"value": "",
-			"type": "string"
-		}
-	]
+  "info": {
+    "_postman_id": "0965e2fd-e639-4867-802c-f7241edd0724",
+    "name": "User Collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "47119572",
+    "_collection_link": "https://hikawi-9387197.postman.co/workspace/Nguy%E1%BB%87t-%C3%81nh's-Workspace~fb299228-04fc-42c3-8126-b296756c6660/collection/47119572-0965e2fd-e639-4867-802c-f7241edd0724?action=share&source=collection_link&creator=47119572"
+  },
+  "item": [
+    {
+      "name": "Register a new user fails with not enough fields",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 422\", function () {",
+              "    pm.response.to.have.status(422);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{AUTH_TOKEN}}",
+            "type": "text",
+            "disabled": true
+          }
+        ],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "email",
+              "value": "apitesting@example.com",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{BASE_URL}}/users/register",
+          "host": ["{{BASE_URL}}"],
+          "path": ["users", "register"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Register a new user fails with a bad format email",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 400\", function () {",
+              "    pm.response.to.have.status(400);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{AUTH_TOKEN}}",
+            "type": "text",
+            "disabled": true
+          }
+        ],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "email",
+              "value": "apitesting",
+              "type": "text"
+            },
+            {
+              "key": "first_name",
+              "value": "John",
+              "type": "text"
+            },
+            {
+              "key": "last_name",
+              "value": "Doe",
+              "type": "text"
+            },
+            {
+              "key": "address",
+              "value": "Street 1",
+              "type": "text"
+            },
+            {
+              "key": "city",
+              "value": "City",
+              "type": "text"
+            },
+            {
+              "key": "state",
+              "value": "State",
+              "type": "text"
+            },
+            {
+              "key": "country",
+              "value": "Country",
+              "type": "text"
+            },
+            {
+              "key": "postcode",
+              "value": "1234AA",
+              "type": "text"
+            },
+            {
+              "key": "phone",
+              "value": "0987654321",
+              "type": "text"
+            },
+            {
+              "key": "dob",
+              "value": "1970-01-01",
+              "type": "text"
+            },
+            {
+              "key": "password",
+              "value": "apitesting",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{BASE_URL}}/users/register",
+          "host": ["{{BASE_URL}}"],
+          "path": ["users", "register"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Register a new user succeeds with proper data",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 201\", function () {",
+              "    pm.response.to.have.status(201);",
+              "});",
+              "",
+              "pm.test(\"Response data contain correct data\", () => {",
+              "    const json = pm.response.json();",
+              "    pm.expect(json).to.have(\"id\");",
+              "    pm.expect(json.first_name).to.eql(\"John\");",
+              "    pm.expect(json.city).to.sql(\"City\");",
+              "})",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{AUTH_TOKEN}}",
+            "type": "text",
+            "disabled": true
+          }
+        ],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "email",
+              "value": "apitesting@example.com",
+              "type": "text"
+            },
+            {
+              "key": "first_name",
+              "value": "John",
+              "type": "text"
+            },
+            {
+              "key": "last_name",
+              "value": "Doe",
+              "type": "text"
+            },
+            {
+              "key": "address",
+              "value": "Street 1",
+              "type": "text"
+            },
+            {
+              "key": "city",
+              "value": "City",
+              "type": "text"
+            },
+            {
+              "key": "state",
+              "value": "State",
+              "type": "text"
+            },
+            {
+              "key": "country",
+              "value": "Country",
+              "type": "text"
+            },
+            {
+              "key": "postcode",
+              "value": "1234AA",
+              "type": "text"
+            },
+            {
+              "key": "phone",
+              "value": "0987654321",
+              "type": "text"
+            },
+            {
+              "key": "dob",
+              "value": "1970-01-01",
+              "type": "text"
+            },
+            {
+              "key": "password",
+              "value": "apitesting",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{BASE_URL}}/users/register",
+          "host": ["{{BASE_URL}}"],
+          "path": ["users", "register"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Logging in fails with a non-existent account",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 400s\", function () {",
+              "    pm.expect([400, 401, 403]).to.contain(pm.response.code);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{AUTH_TOKEN}}",
+            "type": "text",
+            "disabled": true
+          }
+        ],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "email",
+              "value": "{{email}}",
+              "type": "text"
+            },
+            {
+              "key": "password",
+              "value": "{{password}}",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{BASE_URL}}/users/login",
+          "host": ["{{BASE_URL}}"],
+          "path": ["users", "login"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Logging in fails with incorrect password",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 400s\", function () {",
+              "    pm.expect([400, 401, 403]).to.contain(pm.response.code);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{AUTH_TOKEN}}",
+            "type": "text",
+            "disabled": true
+          }
+        ],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "email",
+              "value": "{{email}}",
+              "type": "text"
+            },
+            {
+              "key": "password",
+              "value": "{{password}}",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{BASE_URL}}/users/login",
+          "host": ["{{BASE_URL}}"],
+          "path": ["users", "login"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Logging in succeeds with correct credentials",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response contains access token\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.ownProperty(\"access_token\");",
+              "    pm.globals.set(\"AUTH_TOKEN\", jsonData.access_token);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{AUTH_TOKEN}}",
+            "type": "text",
+            "disabled": true
+          }
+        ],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "email",
+              "value": "{{email}}",
+              "type": "text"
+            },
+            {
+              "key": "password",
+              "value": "{{password}}",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{BASE_URL}}/users/login",
+          "host": ["{{BASE_URL}}"],
+          "path": ["users", "login"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Sending a forgot password succeeds",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{AUTH_TOKEN}}",
+            "type": "text",
+            "disabled": true
+          }
+        ],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "email",
+              "value": "admin@practicesoftwaretesting.com",
+              "type": "text"
+            },
+            {
+              "key": "password",
+              "value": "welcome01",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{BASE_URL}}/users/forgot-password",
+          "host": ["{{BASE_URL}}"],
+          "path": ["users", "forgot-password"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Changing password fails without authentication",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 401\", function () {",
+              "    pm.response.to.have.status(401);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{AUTH_TOKEN}}",
+            "type": "text",
+            "disabled": true
+          }
+        ],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "password",
+              "value": "welcome01",
+              "type": "text"
+            },
+            {
+              "key": "new_password",
+              "value": "welcome02",
+              "type": "text"
+            },
+            {
+              "key": "new_password_confirmation",
+              "value": "welcome02",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{BASE_URL}}/users/change-password",
+          "host": ["{{BASE_URL}}"],
+          "path": ["users", "change-password"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Changing password succeeds with authentication",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{AUTH_TOKEN}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "password",
+              "value": "welcome01",
+              "type": "text"
+            },
+            {
+              "key": "new_password",
+              "value": "welcome02",
+              "type": "text"
+            },
+            {
+              "key": "new_password_confirmation",
+              "value": "welcome02",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{BASE_URL}}/users/change-password",
+          "host": ["{{BASE_URL}}"],
+          "path": ["users", "change-password"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Getting my profile succeeds with authentication",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response data contains correct info\", () => {",
+              "    const json = pm.response.json();",
+              "    pm.expect(json).to.ownProperty(\"first_name\");",
+              "    pm.expect(json.first_name).to.eql(\"John\");",
+              "});",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{AUTH_TOKEN}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": []
+        },
+        "url": {
+          "raw": "{{BASE_URL}}/users/me",
+          "host": ["{{BASE_URL}}"],
+          "path": ["users", "me"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Getting my profile fails with no authentication",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 401\", function () {",
+              "    pm.response.to.have.status(401);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{AUTH_TOKEN}}",
+            "type": "text",
+            "disabled": true
+          }
+        ],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": []
+        },
+        "url": {
+          "raw": "{{BASE_URL}}/users/me",
+          "host": ["{{BASE_URL}}"],
+          "path": ["users", "me"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Logging out fails with no authentication",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 401\", function () {",
+              "    pm.response.to.have.status(401);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{AUTH_TOKEN}}",
+            "type": "text",
+            "disabled": true
+          }
+        ],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": []
+        },
+        "url": {
+          "raw": "{{BASE_URL}}/users/logout",
+          "host": ["{{BASE_URL}}"],
+          "path": ["users", "logout"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Refreshing token fails without authentication",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 401\", function () {",
+              "    pm.response.to.have.status(401);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{AUTH_TOKEN}}",
+            "type": "text",
+            "disabled": true
+          }
+        ],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": []
+        },
+        "url": {
+          "raw": "{{BASE_URL}}/users/refresh",
+          "host": ["{{BASE_URL}}"],
+          "path": ["users", "refresh"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Refreshing a token succeeds with valid authentication",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response data contains new token\", () => {",
+              "    const json = pm.response.json();",
+              "    pm.expect(json).to.ownProperty(\"access_token\");",
+              "    pm.globals.set(\"AUTH_TOKEN\", json.access_token);",
+              "})",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{AUTH_TOKEN}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": []
+        },
+        "url": {
+          "raw": "{{BASE_URL}}/users/refresh",
+          "host": ["{{BASE_URL}}"],
+          "path": ["users", "refresh"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Retrieving specific user fails without admin authentication",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 401\", function () {",
+              "    pm.response.to.have.status(401);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{AUTH_TOKEN}}",
+            "type": "text",
+            "disabled": true
+          }
+        ],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": []
+        },
+        "url": {
+          "raw": "{{BASE_URL}}/users/1",
+          "host": ["{{BASE_URL}}"],
+          "path": ["users", "1"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Retrieving non existent user fails gracefully",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 404\", function () {",
+              "    pm.response.to.have.status(404);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{AUTH_TOKEN}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": []
+        },
+        "url": {
+          "raw": "{{BASE_URL}}/users/999",
+          "host": ["{{BASE_URL}}"],
+          "path": ["users", "999"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Retrieving correct user succeeds with admin",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{AUTH_TOKEN}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": []
+        },
+        "url": {
+          "raw": "{{BASE_URL}}/users/1",
+          "host": ["{{BASE_URL}}"],
+          "path": ["users", "1"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Getting all users fails with no permission",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 401\", function () {",
+              "    pm.response.to.have.status(401);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{BASE_URL}}/users",
+          "host": ["{{BASE_URL}}"],
+          "path": ["users"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Getting all users succeeded with admin account",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Result contains data field\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.ownProperty(\"data\");",
+              "});",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{AUTH_TOKEN}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{BASE_URL}}/users",
+          "host": ["{{BASE_URL}}"],
+          "path": ["users"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Logging out succeeds with correct authentication",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{AUTH_TOKEN}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": []
+        },
+        "url": {
+          "raw": "{{BASE_URL}}/users/logout",
+          "host": ["{{BASE_URL}}"],
+          "path": ["users", "logout"]
+        }
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "exec": [""]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "exec": [""]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "BASE_URL",
+      "value": "http://localhost:8091",
+      "type": "string"
+    },
+    {
+      "key": "AUTH_TOKEN",
+      "value": "",
+      "type": "string"
+    }
+  ]
 }
+

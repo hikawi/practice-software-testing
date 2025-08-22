@@ -1,0 +1,8 @@
+by_brand,by_category,is_rental,between,sort
+1,,,,
+,2,,,
+,,true,,
+,,false,,
+,,,"price,20,25",
+,,,,"name,asc"
+
